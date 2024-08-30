@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # post '/validation_codes' ,to :'validationCodes#create'
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :api do
+    namespace :v1  do
+      # /api/v1
+      resources :validation_codes, only: [:create]
+      resource :session, only: [:create, :destory]
+      resource :me, only: [:show]
+      resources :items
+      resources :tags
 
-  post '/users', to: 'users#create'
-  get '/users/:id', to: 'users#show'
+    end
+  end
+ 
 end
